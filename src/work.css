@@ -1,0 +1,199 @@
+.work-page * {
+  box-sizing: border-box;
+}
+
+/* CENTER THE FORM */
+.work-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background: #f0f0f0;
+  padding: 20px;
+}
+
+/* LOGO */
+.work-page .logo {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgb(147, 147, 147);
+  width: 150px;
+  height: 150px;
+  top: 5px;
+  left: 3px;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* FORM WRAPPER */
+.work-page .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  max-width: 100%;
+  height: 500px;
+  background: transparent;
+  border: 5px solid transparent;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.work-page .wrapper:hover {
+  border: 5px solid #148477;
+}
+
+/* TITLE */
+.work-page h2 {
+  font-size: 2em;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.work-page .wrapper:hover h2 {
+  color: #148477;
+}
+
+/* INPUT BOX */
+.work-page .put-box {
+  position: relative;
+  width: 320px;
+  max-width: 100%;
+  margin: 20px 0;
+}
+
+/* INPUT FIELD */
+.work-page .put-box input {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #333;
+  outline: none;
+  border-radius: 5px;
+  font-size: 1em;
+  padding: 0 40px 0 35px; /* left for icon, right for eye */
+  transition: 0.3s;
+}
+
+.work-page .put-box input::placeholder {
+  color: #333;
+}
+
+.work-page .wrapper:hover .put-box input {
+  border-color: #148477;
+}
+
+/* ICONS INSIDE INPUT */
+.work-page .put-box svg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  color: #555;
+  transition: 0.3s;
+}
+
+/* LEFT ICON (user/lock) */
+.work-page .put-box svg:first-child {
+  left: 10px;
+}
+
+/* RIGHT ICON (eye toggle) */
+.work-page .put-box.password-input .toggle-eye {
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Hover color for icons */
+.work-page .wrapper:hover .put-box svg {
+  color: #148477;
+}
+
+/* FORGOT PASSWORD LINK */
+.work-page .forgot-pass {
+  margin: -15px 0 15px;
+}
+
+.work-page .forgot-pass a {
+  color: #148477;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.work-page .forgot-pass a:hover {
+  text-decoration: underline;
+}
+
+/* BUTTON */
+.work-page button {
+  width: 70%;
+  max-width: 100%;
+  height: 45px;
+  background: #148477;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  color: white;
+  font-weight: 500;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.work-page button:hover {
+  background: #0b5f55;
+}
+
+/* REGISTER LINK */
+.work-page .register-link {
+  font-size: 0.9em;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.work-page .register-link p {
+  color: black;
+}
+
+.work-page .register-link p a {
+  color: #148477;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.work-page .register-link p a:hover {
+  text-decoration: underline;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 500px) {
+  .work-page .wrapper {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .work-page .put-box {
+    width: 100%;
+  }
+
+  .work-page button {
+    width: 100%;
+  }
+}

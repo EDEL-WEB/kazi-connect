@@ -1,0 +1,221 @@
+/* FullCalendar Customization */
+.fc {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: #00695c !important;
+}
+
+.fc .fc-button-primary {
+  background-color: #00695c !important;
+  border-color: #00695c !important;
+  text-transform: capitalize !important;
+  font-weight: 500 !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+}
+
+.fc .fc-button-primary:hover {
+  background-color: #00897b !important;
+  border-color: #00897b !important;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  background-color: #004d40 !important;
+  border-color: #004d40 !important;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: #e0e0e0 !important;
+}
+
+.fc .fc-col-header-cell-cushion {
+  color: #00695c !important;
+  font-weight: 600 !important;
+  padding: 12px !important;
+}
+
+.fc .fc-daygrid-day-number {
+  color: #333 !important;
+  font-weight: 500 !important;
+  padding: 8px !important;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: #e0f2f1 !important;
+}
+
+.fc-event {
+  border-radius: 6px !important;
+  padding: 4px 8px !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease !important;
+}
+
+.fc-event:hover {
+  transform: scale(1.02) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* DataGrid Customization */
+.MuiDataGrid-root {
+  border: none !important;
+  border-radius: 12px !important;
+}
+
+.MuiDataGrid-columnHeaders {
+  background-color: #f5f5f5 !important;
+  border-bottom: 2px solid #e0e0e0 !important;
+}
+
+.MuiDataGrid-columnHeaderTitle {
+  font-weight: 600 !important;
+  color: #333 !important;
+}
+
+.MuiDataGrid-cell {
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.MuiDataGrid-row:hover {
+  background-color: #f5f5f5 !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00695c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00897b;
+}
+
+/* Smooth Transitions */
+.MuiCard-root {
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.MuiCard-root:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Table Styles */
+.MuiTableCell-root {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.MuiTableHead-root .MuiTableCell-root {
+  font-weight: 600 !important;
+  color: #333 !important;
+  background-color: #f5f5f5 !important;
+}
+
+/* Button Hover Effects */
+.MuiButton-root {
+  transition: all 0.3s ease !important;
+}
+
+/* Avatar Styles */
+.MuiAvatar-root {
+  font-weight: 600 !important;
+}
+
+/* Chip Styles */
+.MuiChip-root {
+  font-weight: 500 !important;
+}
+
+/* Tab Styles */
+.MuiTabs-root {
+  min-height: 48px !important;
+}
+
+.MuiTab-root {
+  text-transform: none !important;
+  font-weight: 500 !important;
+  min-height: 48px !important;
+}
+
+.Mui-selected {
+  font-weight: 600 !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .fc .fc-toolbar {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  
+  .fc .fc-toolbar-title {
+    font-size: 1rem !important;
+  }
+  
+  .fc .fc-button {
+    padding: 6px 12px !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Animation for stats cards */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.MuiGrid-item {
+  animation: slideInUp 0.5s ease forwards;
+}
+
+.MuiGrid-item:nth-child(1) { animation-delay: 0.1s; }
+.MuiGrid-item:nth-child(2) { animation-delay: 0.2s; }
+.MuiGrid-item:nth-child(3) { animation-delay: 0.3s; }
+.MuiGrid-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Loading State */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

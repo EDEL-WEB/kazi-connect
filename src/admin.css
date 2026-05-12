@@ -1,0 +1,189 @@
+.admin-page * {
+  box-sizing: border-box;
+}
+
+/* CENTER THE FORM */
+.admin-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;  
+  width: 100%;
+  background: #000000;
+  padding: 20px;
+}
+
+.logo {
+  position: absolute;
+  border-radius: 50%;
+  /* border: 2px solid rgb(147, 147, 147); */
+  width: 150px;
+  height: 150px;
+  top: 5px;
+  left: 3px;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* FORM WRAPPER */
+.admin-page .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  max-width: 100%;
+  height: 500px;
+  background: transparent;
+  border: 5px solid transparent;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.admin-page .wrapper:hover {
+  border: 5px solid #5affec;
+  box-shadow: 0 0 20px #4dffea, inset 0 0 20px #5affec ;
+}
+
+/* TITLE */
+.admin-page h2 {
+  font-size: 2em;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.admin-page .wrapper:hover h2 {
+  color: #5affec;
+}
+
+/* INPUT BOX */
+.admin-page .put-box {
+  position: relative;
+  width: 320px;
+  max-width: 100%;
+  margin: 20px 0;
+}
+
+.admin-page .put-box input {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #333;
+  outline: none;
+  border-radius: 5px;
+  font-size: 1em;
+  padding: 0 10px 0 35px;
+  transition: 0.5s;
+}
+
+.admin-page .wrapper:hover .put-box input {
+  border: 2px solid #5affec;
+}
+
+.admin-page .put-box input::placeholder {
+  color: #f7f7f7;
+}
+
+/* ICONS INSIDE INPUT */
+.admin-page .put-box svg {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  font-size: 1.2em;
+  transition: 0.5s;
+}
+
+.admin-page .wrapper:hover .put-box svg {
+  color: #5affec;
+  box-shadow: #148477;
+}
+
+/* FORGOT PASSWORD LINK */
+.admin-page .forgot-pass {
+  margin: -15px 0 15px;
+}
+
+.admin-page .forgot-pass a {
+  color: #5affec;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.admin-page .forgot-pass a:hover {
+  text-decoration: underline;
+}
+
+/* BUTTON */
+.admin-page button {
+  position: relative;
+  width: 70%;
+  max-width: 100%;
+  height: 45px;
+  background: #148477;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  color: white;
+  font-weight: 500;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.admin-page button:hover {
+  background: #0b5f55;
+}
+
+/* REGISTER LINK */
+.admin-page .register-link {
+  font-size: 0.9em;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.admin-page .register-link p {
+  color: black;
+}
+
+.admin-page .register-link p a {
+  color: #5affec;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.admin-page .register-link p a:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 500px) {
+  .admin-page .wrapper {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .admin-page .put-box {
+    width: 100%;
+  }
+
+  .admin-page button {
+    width: 100%;
+  }
+}

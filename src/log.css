@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+input,
+select {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ------------------ CONTAINER ------------------ */
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+/* ------------------ THE BIG CIRCLE ------------------ */
+.container::before {
+  content: '';
+  position: absolute;
+  width: 1800px;
+  height: 1800px;
+  border-radius: 50%;
+  background: linear-gradient(-45deg, #148477, #148477);
+  top: -10%;
+  left: -50%;
+  transform: translateY(-50%);
+  z-index: 6;
+  transition: 1.8s ease-in-out;
+}
+
+.container.sign-up-mode::before {
+  left: 55%;
+}
+
+/* ------------------ FORMS CONTAINER ------------------ */
+.forms-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.signin-signup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr;
+  z-index: 10; /* above the circle */
+  transition: 1s 0.7s ease-in-out;
+}
+
+/* ------------------ FORMS ------------------ */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 400px;
+  transition: all 0.7s ease-in-out;
+  z-index: 9;
+}
+
+form.sign-in-form {
+  opacity: 1;
+  pointer-events: all;
+  transform: translate(70%, -40%);
+  
+}
+
+form.sign-up-form {
+  opacity: 0;
+  pointer-events: none;
+  left: 20%; 
+  top: -30%;
+}
+
+/* ------------------ SWITCHING FORMS ------------------ */
+.container.sign-up-mode .sign-in-form {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-150%, -50%);
+}
+
+.container.sign-up-mode .sign-up-form {
+  opacity: 1;
+  pointer-events: all;
+  transform: translate(-50%, -50%);
+}
+
+/* ------------------ INPUT FIELDS ------------------ */
+.title {
+  font-size: 2.2rem;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  max-width: 380px;
+  width: 100%;
+  height: 55px;
+  background-color: #f9f9f9;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  align-items: center;
+  margin: 10px 0;
+  border-radius: 55px;
+  padding: 0 0.4rem;
+}
+
+.input-field svg {
+  height: 22px;
+  width: 22px;
+}
+
+.input-field input,
+.input-field select {
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #000;
+  width: 100%;
+}
+
+/* ------------------ BUTTONS ------------------ */
+.btn {
+  width: 130px;
+  height: 40px;
+  border: none;
+  outline: none;
+  border-radius: 49px;
+  cursor: pointer;
+  background-color: #148477;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 10px 0;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  background-color: #0b5f55;
+}
+
+.btn.transparent {
+  background: none;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+/* ------------------ SOCIAL MEDIA ------------------ */
+.social-text {
+  padding: 0.7rem 0;
+  font-size: 1rem;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+}
+
+.social-icon {
+  height: 46px;
+  width: 46px;
+  border: 1px solid #148477;
+  margin: 0 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: #148477;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.social-icon:hover {
+  color: #000;
+  border-color: #000;
+}
+
+/* ------------------ PANELS ------------------ */
+.panels-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  top: 0;
+  left: 0;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 7;
+  padding: 2rem 2rem;
+}
+
+.panel .content {
+  color: #fff;
+}
+
+.panel h3 {
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.panel p {
+  font-size: 1rem;
+  padding: 0.7rem 0;
+}
+
+.image {
+  width: 500px;
+  transition: 1.2s ease-in-out;
+}
+
+/* ------------------ RIGHT PANEL ------------------ */
+.right-panel {
+  pointer-events: none;
+}
+
+.right-panel .image,
+.right-panel .content {
+  transform: translateX(800px);
+}
+
+.container.sign-up-mode .right-panel .image,
+.container.sign-up-mode .right-panel .content {
+  transform: translateX(0px);
+  pointer-events: all;
+}
+
+/* ------------------ LEFT PANEL ------------------ */
+.left-panel {
+  pointer-events: all;
+}
+
+.container.sign-up-mode .left-panel .image,
+.container.sign-up-mode .left-panel .content {
+  transform: translateX(-800px);
+}
+
+/* ------------------ MOBILE CIRCLE ADJUSTMENTS ---------------- */
+@media (max-width: 768px) {
+  /* Keep the panels stacked vertically */
+  .panels-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-panel,
+  .right-panel {
+    position: relative;
+    transform: translateX(0) !important;
+    pointer-events: all !important;
+    margin-bottom: 20px;
+  }
+
+  /* Move the circle vertically instead of sideways */
+  .container::before {
+    width: 1200px;
+    height: 1200px;
+    top: -50%; /* Adjust initial top position */
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .container.sign-up-mode::before {
+    top: 60%; /* Moves circle downward when switching to sign-up */
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 480px) {
+  .container::before {
+    width: 900px;
+    height: 900px;
+    top: -40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .container.sign-up-mode::before {
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

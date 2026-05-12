@@ -1,0 +1,484 @@
+/* ---------------- Body ---------------- */
+.dashboard-body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* reduce top padding to match navbar height */
+    padding-top: 100px; 
+}
+
+.description { 
+    text-align: center;
+     margin-top: 40px; 
+}
+
+/* ---------------- Navbar ---------------- */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* logo left, links right */
+    align-items: center; /* vertically center logo and links */
+    padding: 10px 50px;
+    background-color: #0b5f55;
+    color: white;
+    position: fixed; /* FIXED at top */
+    top: 0; 
+    left: 0; /* ensure it starts at left edge */
+    right: 0; /* stretch to full width */
+    height: 100px;
+    box-sizing: border-box; 
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+}
+
+/* Logo */
+.navbar .logo img {
+    height: 90px;
+    width: 90px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid rgb(147, 147, 147);
+}
+
+/* Links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px; 
+    margin-left: auto; /* push links to far right */
+    align-items: center; 
+}
+
+/* Nav link styles */
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative; /* needed for underline animation */
+    transition: all 0.3s ease;
+}
+
+/* Hover underline effect */
+.nav-links li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px; /* adjust distance from text */
+    width: 0%;
+    height: 2px;
+    background-color: yellow;
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+    width: 100%; /* underline expands across text */
+}
+.ad img {
+    position: absolute;
+    border-radius: 30px;
+    top: 300px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 1700px;
+    transition: all 0.2s ease-out; 
+}
+
+
+
+/* Hamburger menu */
+.menu-icon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-links-mobile {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: #0b5f55;
+        width: 100%;
+        text-align: center;
+        gap: 15px;
+        padding: 20px 0;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+}
+
+
+
+.why {
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    margin-top: 800px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.why h2 {
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.why blockquote {
+    background: #f9f9f9;
+    padding: 40px 50px;
+    border-left: 5px solid #148477;
+    border-radius: 10px;
+    font-size: 1em;
+    line-height: 1.7em;
+    color: #333;
+    text-align: justify;
+    position: relative;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* BIG GREEN OPEN QUOTE */
+.why blockquote:before {
+    content: "“";
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    font-size: 80px;
+    color: #148477;
+    font-weight: bold;
+    font-family: serif;
+}
+
+/* BIG GREEN CLOSE QUOTE */
+.why blockquote:after {
+    content: "”";
+    position: absolute;
+    bottom: -40px;
+    right: 10px;
+    font-size: 80px;
+    color: #148477;
+    font-weight: bold;
+    font-family: serif;
+}
+.carousel-section {
+    width: 100%;
+    margin-top: 1100px; /* adjust as needed */
+    text-align: center;
+    background: black;
+}
+
+.carousel-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-cards {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px;
+    height: 520px; /* should be slightly bigger than card height */
+}
+
+.carousel-cards::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-card {
+    width: 600px;
+    height: 500px;
+    flex-shrink: 0; /* important so card doesn't shrink in flex container */
+    background: rgb(255, 253, 253);
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.carousel-card:hover {
+    transform: scale(1.05);
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 350px; /* bigger image to fill card */
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.carousel-card p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 10px;
+    color: #000000;
+}
+/* Map Section */
+.map-section {
+  padding: 80px 20px;
+  background: #000000;
+  text-align: center;
+
+  /* Start hidden and above */
+  opacity: 0;
+  transform: translateY(-50px); /* Start 50px above */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Visible state */
+.map-section.visible {
+  opacity: 1;
+  transform: translateY(0); /* Slide into place */
+}
+
+/* Titles and subtitle */
+.map-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.map-subtitle {
+  color: hsl(0, 0%, 98%);
+  margin-bottom: 40px;
+}
+/* Map Section */
+.map-section {
+  padding: 80px 20px;
+  background: #000000;
+  text-align: center;
+
+  /* Start hidden and above */
+  opacity: 0;
+  transform: translateY(-50px); /* Start 50px above */
+  transition: opacity 1.0s ease-out, transform 1.0s ease-out;
+}
+
+/* Visible state */
+.map-section.visible {
+  opacity: 1;
+  transform: translateY(0); /* Slide into place */
+}
+
+/* Titles and subtitle */
+.map-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.map-subtitle {
+  color: hsl(0, 0%, 98%);
+  margin-bottom: 40px;
+}
+
+/* Map container */
+.map-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Kenya SVG map */
+.kenya-map {
+  width: 100%;
+  height: auto;
+}
+
+/* Map shapes */
+.map-shape {
+  fill: #148477;
+  stroke: #bbb;
+  stroke-width: 2;
+  transition: fill 0.3s ease;
+}
+
+.map-shape:hover {
+  fill: #00c4cc; /* Highlight on hover */
+  cursor: pointer;
+}
+
+/* Map pins */
+.map-pin {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.map-pin circle {
+  fill: #ff5722;
+  stroke: #fff;
+  stroke-width: 2;
+  transition: transform 0.2s ease;
+}
+
+.map-pin text {
+  font-size: 12px;
+  fill: #fff;
+  text-anchor: middle;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.map-pin:hover circle {
+  transform: scale(1.2);
+}
+
+.map-pin:hover text {
+  opacity: 1;
+}
+
+/* Join Kazi Connect Section */
+.join-section {
+  padding: 80px 20px;
+  background: #000000;
+  text-align: center;
+}
+
+.join-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #148477;
+}
+
+.join-subtitle {
+  color: #faf6f6;
+  margin-bottom: 40px;
+}
+
+.join-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.join-card {
+  background: rgb(207, 205, 205);
+  border-radius: 10px;
+  padding: 30px 20px;
+  max-width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.join-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.join-card h3 {
+  margin-bottom: 15px;
+  color: #148477;
+}
+
+.join-card p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.join-btn {
+  background: #148477;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 5px;
+  text-decoration: none; 
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.join-btn:hover {
+  background: #175f54;
+}
+/* Footer styles */
+.site-footer {
+  background: #111;
+  color: #eee;
+  padding: 40px 20px 20px 40px;
+  text-align: left;
+  font-size: 14px;
+  opacity: 0;                /* initial hidden state */
+  transform: translateY(50px); /* start slightly below */
+  transition: all 0.8s ease-out; /* smooth fade + slide */
+}
+
+.site-footer.visible {
+  opacity: 1;
+  transform: translateY(0);  /* slide into place */
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.footer-about,
+.footer-links,
+.footer-contact {
+  flex: 1 1 250px; /* flexible layout */
+}
+
+.footer-about h4,
+.footer-links h4,
+.footer-contact h4 {
+  margin-bottom: 10px;
+  color: #148477;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 5px;
+}
+
+.footer-links ul li a {
+  color: #eee;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #148477;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  font-size: 13px;
+  color: #aaa;
+}
+

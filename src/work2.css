@@ -1,0 +1,186 @@
+.work2-page * {
+  box-sizing: border-box;
+}
+
+/* CENTER THE FORM */
+.work2-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background: #f0f0f0;
+  padding: 20px;
+}
+
+/* LOGO */
+.work2-page .logo {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgb(147, 147, 147);
+  width: 150px;
+  height: 150px;
+  top: 5px;
+  left: 3px;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* FORM WRAPPER */
+.work2-page .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  max-width: 100%;
+  height: 750px;
+  background: transparent;
+  border: 5px solid transparent;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.work2-page .wrapper:hover {
+  border: 5px solid #148477;
+}
+
+/* TITLE */
+.work2-page h2 {
+  font-size: 2em;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.work2-page .wrapper:hover h2 {
+  color: #148477;
+}
+
+/* INPUT BOX */
+.work2-page .put-box {
+  position: relative;
+  width: 320px;
+  max-width: 100%;
+  margin: 20px 0;
+}
+
+/* INPUT FIELD AND SELECT */
+.work2-page .put-box input,
+.work2-page .put-box select {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #333;
+  outline: none;
+  border-radius: 5px;
+  font-size: 1em;
+  padding: 0 40px 0 35px; /* space for icons */
+  transition: 0.3s;
+}
+
+.work2-page .wrapper:hover .put-box input,
+.work2-page .wrapper:hover .put-box select {
+  border-color: #148477;
+}
+
+/* PLACEHOLDER */
+.work2-page .put-box input::placeholder {
+  color: #333;
+}
+
+/* ICONS INSIDE INPUT */
+.work2-page .put-box svg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  color: #555;
+  transition: 0.3s;
+}
+
+/* LEFT ICON (user, lock, phone, email) */
+.work2-page .put-box svg:first-child {
+  left: 10px;
+}
+
+/* RIGHT ICON (eye toggle) */
+.work2-page .put-box.password-input .toggle-eye {
+  right: 10px;
+  cursor: pointer;
+}
+
+/* HOVER COLOR FOR ICONS */
+.work2-page .wrapper:hover .put-box svg {
+  color: #148477;
+}
+
+/* BUTTON */
+.work2-page button {
+  width: 70%;
+  max-width: 100%;
+  height: 45px;
+  background: #148477;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  color: white;
+  font-weight: 500;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.work2-page button:hover {
+  background: #0b5f55;
+}
+
+/* REGISTER LINK */
+.work2-page .register-link {
+  font-size: 0.9em;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.work2-page .register-link p {
+  color: black;
+}
+
+.work2-page .register-link p a {
+  color: #148477;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.work2-page .register-link p a:hover {
+  text-decoration: underline;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 500px) {
+  .work2-page .wrapper {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .work2-page .put-box {
+    width: 100%;
+  }
+
+  .work2-page button {
+    width: 100%;
+  }
+}
