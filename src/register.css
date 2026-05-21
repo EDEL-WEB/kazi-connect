@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ── RESET scoped to register page ── */
+.reg-page * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ── FULL PAGE WRAPPER ── */
+.reg-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ── GREEN CIRCLE — right side ── */
+.reg-page::before {
+  content: '';
+  position: absolute;
+  width: 1800px;
+  height: 1800px;
+  border-radius: 50%;
+  background: linear-gradient(-45deg, #148477, #0d6b5e);
+  top: 50%;
+  right: -55%;
+  transform: translateY(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ── LEFT: FORM SIDE ── */
+.reg-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+  z-index: 10;
+  position: relative;
+}
+
+/* Override log.css global form rule */
+.reg-form-side form,
+.reg-form {
+  all: unset;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 400px !important;
+  position: static !important;
+  transform: none !important;
+  opacity: 1 !important;
+  pointer-events: all !important;
+}
+
+.reg-title {
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  color: #111 !important;
+  margin-bottom: 4px !important;
+  text-align: center;
+}
+
+.reg-subtitle {
+  font-size: 0.88rem;
+  color: #888;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.reg-error {
+  width: 100%;
+  background: #ffebee;
+  color: #c62828;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* ── INPUT FIELDS ── */
+.reg-field {
+  max-width: 380px;
+  width: 100%;
+  height: 55px;
+  background: transparent;
+  border: 2px solid #148477;
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  margin: 7px 0;
+  border-radius: 55px;
+  padding: 0 16px 0 0;
+  position: relative;
+}
+
+.reg-field .reg-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 1rem;
+}
+
+.reg-field input,
+.reg-field select {
+  all: unset;
+  font-size: 0.95rem;
+  color: #111;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  -webkit-text-fill-color: #111;
+}
+
+.reg-field input::placeholder {
+  color: #555;
+  -webkit-text-fill-color: #555;
+  opacity: 1;
+}
+
+.reg-field select {
+  cursor: pointer;
+  color: #111 !important;
+}
+
+.reg-eye {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+
+/* ── ROLE TOGGLE ── */
+.reg-role-toggle {
+  max-width: 380px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #e8e8e8;
+  border-radius: 55px;
+  padding: 5px;
+  margin: 7px 0;
+  gap: 4px;
+}
+
+.reg-role-btn {
+  all: unset;
+  height: 45px;
+  border-radius: 49px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #888;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.25s;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.reg-role-btn.active {
+  background: #148477;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(20,132,119,0.35);
+}
+
+.reg-role-btn:not(.active):hover {
+  color: #148477;
+}
+
+/* ── SUBMIT BUTTON ── */
+.reg-submit {
+  all: unset;
+  width: 160px;
+  height: 44px;
+  border-radius: 49px;
+  background: #148477;
+  color: #fff !important;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  margin: 16px 0 10px;
+  transition: background 0.3s;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reg-submit:hover { background: #0b5f55; }
+.reg-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+/* ── LOGIN LINK ── */
+.reg-login-link {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 6px;
+}
+
+.reg-login-link a {
+  color: #148477;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ── SOCIAL ── */
+.reg-social-text {
+  font-size: 0.88rem;
+  color: #888;
+  padding: 10px 0 6px;
+}
+
+.reg-social-row {
+  display: flex;
+  gap: 8px;
+}
+
+.reg-social-icon {
+  width: 42px;
+  height: 42px;
+  border: 1.5px solid #148477;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #148477;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.reg-social-icon:hover { color: #000; border-color: #000; }
+
+/* ── RIGHT: PANEL SIDE ── */
+.reg-panel-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  padding: 2rem;
+  color: #fff;
+}
+
+.reg-panel-side h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.reg-panel-side p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  max-width: 280px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.reg-panel-side img {
+  width: 380px;
+  max-width: 85%;
+  margin-top: 10px;
+}
+
+.reg-panel-btn {
+  all: unset;
+  width: 130px;
+  height: 40px;
+  border: 2px solid #fff;
+  border-radius: 49px;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.25s;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reg-panel-btn:hover { background: rgba(255,255,255,0.15); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .reg-page {
+    grid-template-columns: 1fr;
+  }
+  .reg-page::before {
+    width: 900px;
+    height: 900px;
+    top: auto;
+    bottom: -35%;
+    right: 50%;
+    transform: translateX(50%);
+  }
+  .reg-panel-side { display: none; }
+  .reg-form-side { min-height: 100vh; padding: 40px 20px; }
+}

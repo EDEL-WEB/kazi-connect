@@ -1,0 +1,138 @@
+/* ============================================================
+   KAZICONNECT — DESIGN TOKENS
+   Single source of truth for all visual values
+   ============================================================ */
+
+:root {
+  /* Brand */
+  --kc-teal-50:  #e0f2f1;
+  --kc-teal-100: #b2dfdb;
+  --kc-teal-200: #80cbc4;
+  --kc-teal-400: #26a69a;
+  --kc-teal-500: #009688;
+  --kc-teal-600: #00897b;
+  --kc-teal-700: #00796b;
+  --kc-teal-800: #00695c;
+  --kc-teal-900: #004d40;
+
+  --kc-blue-400: #42a5f5;
+  --kc-blue-500: #2196f3;
+  --kc-blue-600: #1e88e5;
+  --kc-blue-700: #1976d2;
+  --kc-blue-800: #1565c0;
+
+  --kc-amber-400: #ffca28;
+  --kc-amber-500: #ffc107;
+  --kc-amber-600: #ffb300;
+
+  --kc-red-400:  #ef5350;
+  --kc-red-500:  #f44336;
+  --kc-red-600:  #e53935;
+
+  --kc-green-400: #66bb6a;
+  --kc-green-500: #4caf50;
+  --kc-green-600: #43a047;
+
+  --kc-orange-500: #ff9800;
+  --kc-orange-600: #fb8c00;
+
+  /* Semantic */
+  --kc-primary:       var(--kc-teal-600);
+  --kc-primary-dark:  var(--kc-teal-800);
+  --kc-primary-light: var(--kc-teal-400);
+  --kc-primary-bg:    var(--kc-teal-50);
+
+  --kc-success:    var(--kc-green-500);
+  --kc-warning:    var(--kc-amber-500);
+  --kc-danger:     var(--kc-red-500);
+  --kc-info:       var(--kc-blue-500);
+
+  /* Neutrals */
+  --kc-white:   #ffffff;
+  --kc-gray-50: #f8fafc;
+  --kc-gray-100:#f1f5f9;
+  --kc-gray-200:#e2e8f0;
+  --kc-gray-300:#cbd5e1;
+  --kc-gray-400:#94a3b8;
+  --kc-gray-500:#64748b;
+  --kc-gray-600:#475569;
+  --kc-gray-700:#334155;
+  --kc-gray-800:#1e293b;
+  --kc-gray-900:#0f172a;
+
+  /* Typography */
+  --kc-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --kc-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --kc-text-xs:   0.75rem;
+  --kc-text-sm:   0.875rem;
+  --kc-text-base: 1rem;
+  --kc-text-lg:   1.125rem;
+  --kc-text-xl:   1.25rem;
+  --kc-text-2xl:  1.5rem;
+  --kc-text-3xl:  1.875rem;
+  --kc-text-4xl:  2.25rem;
+
+  /* Spacing */
+  --kc-space-1:  0.25rem;
+  --kc-space-2:  0.5rem;
+  --kc-space-3:  0.75rem;
+  --kc-space-4:  1rem;
+  --kc-space-5:  1.25rem;
+  --kc-space-6:  1.5rem;
+  --kc-space-8:  2rem;
+  --kc-space-10: 2.5rem;
+  --kc-space-12: 3rem;
+  --kc-space-16: 4rem;
+
+  /* Radius */
+  --kc-radius-sm:   6px;
+  --kc-radius-md:   10px;
+  --kc-radius-lg:   16px;
+  --kc-radius-xl:   20px;
+  --kc-radius-full: 9999px;
+
+  /* Shadows */
+  --kc-shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --kc-shadow-sm: 0 1px 4px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --kc-shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --kc-shadow-lg: 0 8px 32px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.04);
+  --kc-shadow-xl: 0 20px 60px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.06);
+  --kc-shadow-teal: 0 8px 24px rgba(0,137,123,0.25);
+  --kc-shadow-blue: 0 8px 24px rgba(25,118,210,0.25);
+
+  /* Transitions */
+  --kc-ease:      cubic-bezier(0.4, 0, 0.2, 1);
+  --kc-ease-out:  cubic-bezier(0, 0, 0.2, 1);
+  --kc-ease-in:   cubic-bezier(0.4, 0, 1, 1);
+  --kc-duration-fast:   150ms;
+  --kc-duration-base:   250ms;
+  --kc-duration-slow:   400ms;
+
+  /* Layout */
+  --kc-sidebar-w:    260px;
+  --kc-topbar-h:     64px;
+  --kc-content-max:  1280px;
+
+  /* Z-index */
+  --kc-z-dropdown: 100;
+  --kc-z-sticky:   200;
+  --kc-z-overlay:  300;
+  --kc-z-modal:    400;
+  --kc-z-toast:    500;
+}
+
+/* Dark mode tokens */
+[data-theme="dark"] {
+  --kc-white:    #1e293b;
+  --kc-gray-50:  #0f172a;
+  --kc-gray-100: #1e293b;
+  --kc-gray-200: #334155;
+  --kc-gray-300: #475569;
+  --kc-gray-400: #64748b;
+  --kc-gray-500: #94a3b8;
+  --kc-gray-600: #cbd5e1;
+  --kc-gray-700: #e2e8f0;
+  --kc-gray-800: #f1f5f9;
+  --kc-gray-900: #f8fafc;
+}
