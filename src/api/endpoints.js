@@ -25,9 +25,12 @@ export const workersAPI = {
 export const jobsAPI = {
   create: (d) => api.post('/api/jobs', d),
   get: (id) => api.get(`/api/jobs/${id}`),
+  delete: (id) => api.delete(`/api/jobs/${id}`),
   myJobs: () => api.get('/api/jobs/my-jobs'),
+  customerJobs: () => api.get('/api/jobs/customer-jobs').then(r => ({ ...r, data: Array.isArray(r.data) ? r.data : (r.data?.jobs || []) })),
   availableJobs: () => api.get('/api/jobs/available'),
   accept: (id, d) => api.post(`/api/jobs/${id}/accept`, d),
+  assignWorker: (id, worker_id) => api.post(`/api/jobs/${id}/assign-worker`, { worker_id }),
   approveRate: (id, d) => api.post(`/api/jobs/${id}/approve-rate`, d),
   updateStatus: (id, d) => api.patch(`/api/jobs/${id}/status`, d),
   flaggedWorkers: () => api.get('/api/jobs/flagged-workers'),
@@ -85,7 +88,8 @@ export const notificationsAPI = {
 
 export const verificationAPI = {
   initiate: () => api.post('/api/verification/initiate'),
-  uploadId: (d) => api.post('/api/verification/upload-id', d),
+  uploadId: (d) => api.post('/api/verification/upload-id', d, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  sendPhoneOtp: () => api.post('/api/verification/send-phone-otp'),
   verifyPhone: (d) => api.post('/api/verification/verify-phone', d),
   uploadSelfie: (d) => api.post('/api/verification/upload-selfie', d),
   uploadSkills: (d) => api.post('/api/verification/upload-skills', d),

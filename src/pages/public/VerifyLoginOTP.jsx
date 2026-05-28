@@ -20,9 +20,15 @@ export default function VerifyLoginOTP() {
       const response = await authAPI.verifyLoginOtp({ user_id: state.user_id, otp_code: otp });
       const { token, user } = response.data;
       login(token, user);
-      if (user.role === 'worker') navigate('/worker/dashboard');
-      else if (user.role === 'admin') navigate('/admin');
-      else navigate('/dashboard');
+      if (user.role === 'worker') {
+        if (!user.verification_status) navigate('/worker/setup');
+        else if (user.verification_status === 'verified') navigate('/worker/dashboard');
+        else navigate('/verification');
+      } else if (user.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/dashboard');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid or expired OTP.');
     } finally {

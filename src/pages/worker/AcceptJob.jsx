@@ -23,7 +23,7 @@ export default function AcceptJob() {
     try {
       setSubmitting(true);
       await jobsAPI.accept(id, { proposed_rate: Number(rate) });
-      navigate('/worker/jobs');
+      navigate(`/worker/tracking/${id}`);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to accept job.');
     } finally {

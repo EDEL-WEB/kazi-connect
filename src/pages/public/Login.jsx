@@ -25,28 +25,27 @@ export default function Login() {
       setLoading(true);
       setError('');
       const response = await authAPI.login(formData);
-      const { token, user } = response.data;
+      const data = response.data;
+
+      // Backend requires OTP verification before issuing token
+      if (data.requires_otp || data.user_id) {
+        navigate('/verify-login-otp', { state: { user_id: data.user_id } });
+        return;
+      }
+
+      const { token, user } = data;
       login(token, user);
       if (user.role === 'worker') {
-        if (!user.is_verified && !user.profile_created) {
-          navigate('/worker/setup');
-        } else if (!user.is_verified) {
-          navigate('/verification');
-        } else {
-          navigate('/worker/dashboard');
-        }
+        if (!user.verification_status) navigate('/worker/setup');           // no worker profile yet
+        else if (user.verification_status === 'verified') navigate('/worker/dashboard'); // fully verified
+        else navigate('/verification');                                      // profile exists, pending/rejected
       } else if (user.role === 'admin') {
         navigate('/admin');
       } else {
         navigate('/dashboard');
       }
     } catch (err) {
-      const msg = err.response?.data?.message || '';
-      if (msg.toLowerCase().includes('verif') || msg.toLowerCase().includes('not active') || msg.toLowerCase().includes('not verified')) {
-        setError('Your account is not yet verified. Please check your email for the OTP code.');
-      } else {
-        setError(msg || 'Login failed. Please try again.');
-      }
+      setError(err.response?.data?.message || 'Login failed. Please try again.');
     } finally {
       setLoading(false);
     }

@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
@@ -39,6 +40,7 @@
     "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^7.9.6",
     "recharts": "^3.8.1",
+    "socket.io-client": "^4.8.3",
     "yup": "^1.7.1"
   },
   "devDependencies": {

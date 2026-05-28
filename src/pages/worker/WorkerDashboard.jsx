@@ -4,10 +4,13 @@ import {
   jobsAPI, paymentsAPI, notificationsAPI, verificationAPI,
   jobUpdatesAPI, usersAPI,
 } from '../../api/endpoints';
+import useNotifications from '../../hooks/useNotifications';
+import NotificationBell from '../../components/ui/NotificationBell';
 import './WorkerDashboard.css';
 
 export default function WorkerDashboard() {
   const { user, logout } = useAuth();
+  const { notifications, dismiss, dismissAll } = useNotifications(user);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -19,7 +22,7 @@ export default function WorkerDashboard() {
   const [myJobs, setMyJobs] = useState([]);
   const [wallet, setWallet] = useState(null);
   const [transactions, setTransactions] = useState([]);
-  const [notifications, setNotifications] = useState([]);
+  // notifications managed by useNotifications hook
   const [verificationStatus, setVerificationStatus] = useState(null);
   const [profile, setProfile] = useState(user);
   const [selectedJob, setSelectedJob] = useState(null);
@@ -34,27 +37,25 @@ export default function WorkerDashboard() {
   const [progressNote, setProgressNote] = useState('');
 
   useEffect(() => {
-    loadAll();
     notificationsAPI.heartbeat().catch(() => {});
+    loadAll();
     return () => notificationsAPI.offline().catch(() => {});
   }, []);
 
   const loadAll = async () => {
     setLoading(true);
     try {
-      const [avail, mine, w, t, n, u] = await Promise.all([
+      const [avail, mine, w, t, u] = await Promise.all([
         jobsAPI.availableJobs(),
         jobsAPI.myJobs(),
         paymentsAPI.wallet(),
         paymentsAPI.transactions(),
-        notificationsAPI.pending(),
         usersAPI.me(),
       ]);
       setAvailableJobs(avail.data?.jobs || avail.data || []);
       setMyJobs(mine.data?.jobs || mine.data || []);
       setWallet(w.data);
       setTransactions(Array.isArray(t.data) ? t.data : t.data?.transactions || []);
-      setNotifications(Array.isArray(n.data) ? n.data : []);
       setProfile(u.data || user);
     } catch (err) {
       setError('Failed to load dashboard data');
@@ -113,10 +114,8 @@ export default function WorkerDashboard() {
     } finally { setLoading(false); }
   };
 
-  const handleMarkRead = async (id) => {
-    await notificationsAPI.markRead(id).catch(() => {});
-    setNotifications(p => p.filter(n => n.id !== id));
-  };
+  // keep renderNotifications tab working with hook data
+  const handleMarkRead = dismiss;
 
   const handleInitiateVerification = async () => {
     try {
@@ -160,21 +159,25 @@ export default function WorkerDashboard() {
 
       <div className="wd-stats">
         <div className="wd-stat" style={{ background: 'linear-gradient(135deg,#00695c,#00897b)' }}>
+          <span className="wd-stat-icon">💰</span>
           <div className="wd-stat-label">Wallet Balance</div>
           <div className="wd-stat-value">{money(wallet?.balance)}</div>
           <div className="wd-stat-sub">Available</div>
         </div>
         <div className="wd-stat" style={{ background: 'linear-gradient(135deg,#1565c0,#1976d2)' }}>
+          <span className="wd-stat-icon">⚡</span>
           <div className="wd-stat-label">Active Jobs</div>
           <div className="wd-stat-value">{myJobs.filter(j => ['accepted','in_progress'].includes(j.status)).length}</div>
           <div className="wd-stat-sub">In progress</div>
         </div>
         <div className="wd-stat" style={{ background: 'linear-gradient(135deg,#2e7d32,#388e3c)' }}>
+          <span className="wd-stat-icon">✅</span>
           <div className="wd-stat-label">Completed</div>
           <div className="wd-stat-value">{myJobs.filter(j => j.status === 'completed').length}</div>
           <div className="wd-stat-sub">All time</div>
         </div>
         <div className="wd-stat" style={{ background: 'linear-gradient(135deg,#e65100,#f57c00)' }}>
+          <span className="wd-stat-icon">🔍</span>
           <div className="wd-stat-label">Available Jobs</div>
           <div className="wd-stat-value">{availableJobs.length}</div>
           <div className="wd-stat-sub">Near you</div>
@@ -346,13 +349,19 @@ export default function WorkerDashboard() {
         ) : (
           <div className="wd-table-wrap">
             <table className="wd-table">
-              <thead><tr><th>Type</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead>
+              <thead><tr><th>Type</th><th>Amount</th><th>Balance After</th><th>Date</th></tr></thead>
               <tbody>
                 {transactions.map((tx, i) => (
                   <tr key={i}>
-                    <td style={{ textTransform: 'capitalize' }}>{tx.type || tx.transaction_type}</td>
-                    <td style={{ color: '#00695c', fontWeight: 700 }}>{money(tx.amount)}</td>
-                    <td><StatusBadge status={tx.status} /></td>
+                    <td style={{ textTransform: 'capitalize' }}>
+                      <span style={{ color: tx.type === 'credit' ? '#10b981' : '#ef4444', fontWeight: 600 }}>
+                        {tx.type === 'credit' ? '▲' : '▼'} {tx.type}
+                      </span>
+                    </td>
+                    <td style={{ color: tx.type === 'credit' ? '#10b981' : '#ef4444', fontWeight: 700 }}>
+                      {tx.type === 'credit' ? '+' : '-'}{money(tx.amount)}
+                    </td>
+                    <td style={{ color: '#666' }}>{money(tx.balance_after)}</td>
                     <td>{fmt(tx.created_at)}</td>
                   </tr>
                 ))}
@@ -451,13 +460,13 @@ export default function WorkerDashboard() {
   };
 
   const navItems = [
-    { id: 'dashboard', label: '🏠 Dashboard' },
-    { id: 'available', label: '🔍 Available Jobs' },
-    { id: 'jobs', label: '💼 My Jobs' },
-    { id: 'earnings', label: '💰 Earnings' },
-    { id: 'verification', label: '🔐 Verification' },
-    { id: 'notifications', label: `🔔 Notifications${notifications.length ? ` (${notifications.length})` : ''}` },
-    { id: 'profile', label: '👤 Profile' },
+    { id: 'dashboard',     label: 'Dashboard',      icon: '🏠' },
+    { id: 'available',     label: 'Available Jobs',  icon: '🔍' },
+    { id: 'jobs',          label: 'My Jobs',         icon: '💼' },
+    { id: 'earnings',      label: 'Earnings',        icon: '💰' },
+    { id: 'verification',  label: 'Verification',    icon: '🔐' },
+    { id: 'notifications', label: `Notifications${notifications.length ? ` (${notifications.length})` : ''}`, icon: '🔔' },
+    { id: 'profile',       label: 'Profile',         icon: '👤' },
   ];
 
   return (
@@ -474,13 +483,13 @@ export default function WorkerDashboard() {
           {navItems.map(item => (
             <button key={item.id} className={`wd-nav-item ${activeTab === item.id ? 'active' : ''}`}
               onClick={() => { setActiveTab(item.id); setSidebarOpen(false); }}>
-              {item.label}
+              <span>{item.icon}</span>{item.label}
             </button>
           ))}
         </nav>
         <div className="wd-sidebar-wallet">
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', marginBottom: 4 }}>Wallet</div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: '#fff' }}>{money(wallet?.balance)}</div>
+          <div className="wd-sidebar-wallet-label">Wallet Balance</div>
+          <div className="wd-sidebar-wallet-amount">{money(wallet?.balance)}</div>
         </div>
         <button className="wd-logout" onClick={() => { logout(); window.location.href = '/'; }}>🚪 Logout</button>
       </aside>
@@ -491,9 +500,7 @@ export default function WorkerDashboard() {
           <button className="wd-hamburger" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
           <h1 className="wd-topbar-title">{navItems.find(n => n.id === activeTab)?.label?.replace(/[^\w\s]/g, '').trim() || 'Dashboard'}</h1>
           <div className="wd-topbar-right">
-            <button className="wd-notif-btn" onClick={() => setActiveTab('notifications')}>
-              🔔 {notifications.length > 0 && <span className="wd-notif-dot">{notifications.length}</span>}
-            </button>
+            <NotificationBell notifications={notifications} onDismiss={dismiss} onDismissAll={dismissAll} />
             <div className="wd-avatar wd-avatar-sm">{profile?.full_name?.charAt(0) || 'W'}</div>
           </div>
         </header>

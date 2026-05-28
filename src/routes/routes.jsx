@@ -15,7 +15,7 @@ import NotFound from '../pages/public/NotFound';
 import Unauthorized from '../pages/public/Unauthorized';
 
 // Customer Pages
-import CustomerDashboard from '../pages/customer/CustomerDashboard';
+import CustomerDashboard from '../pages/customer/CustomerDashboardModern';
 import BookService from '../pages/customer/BookService';
 import BookWithEscrow from '../pages/customer/BookWithEscrow';
 import CustomerJobs from '../pages/customer/CustomerJobs';
@@ -109,17 +109,17 @@ export const routes = [
 
   // ===== CUSTOMER ROUTES (Auth: customer) =====
   { path: '/dashboard', element: <CustomerDashboard />, label: 'Dashboard', role: 'customer' },
-  { path: '/jobs/create', element: <BookService />, label: 'Book Service', role: 'customer' },
+  { path: '/jobs/create', element: <BookService />, label: 'Book a Service', role: 'customer' },
   { path: '/escrow/create', element: <BookWithEscrow />, label: 'Book with Escrow', role: 'customer' },
-  { path: '/jobs', element: <CustomerJobs />, label: 'My Jobs', role: 'customer' },
-  { path: '/jobs/:id', element: <JobDetails />, label: 'Job Details', role: 'customer' },
-  { path: '/jobs/:id/approve-rate', element: <ApproveWorkerRate />, label: 'Approve Rate', role: 'customer' },
-  { path: '/tracking/:jobId', element: <TrackWorker />, label: 'Track Worker', role: 'customer' },
+  { path: '/jobs', element: <CustomerJobs />, label: 'My Requests', role: 'customer' },
+  { path: '/jobs/:id', element: <JobDetails />, label: 'Request Details', role: 'customer' },
+  { path: '/jobs/:id/approve-rate', element: <ApproveWorkerRate />, label: 'Approve Payment', role: 'customer' },
+  { path: '/tracking/:jobId', element: <TrackWorker />, label: 'Track Service', role: 'customer' },
   { path: '/jobs/:id/dispute', element: <DisputeJob />, label: 'Dispute Job', role: 'customer' },
   { path: '/jobs/:id/cancel', element: <CancelJob />, label: 'Cancel Job', role: 'customer' },
   { path: '/wallet', element: <CustomerWallet />, label: 'Wallet', role: 'customer' },
   { path: '/transactions', element: <Transactions />, label: 'Transactions', role: 'customer' },
-  { path: '/payments/release/:jobId', element: <ReleasePayment />, label: 'Release Payment', role: 'customer' },
+  { path: '/payments/release/:jobId', element: <ReleasePayment />, label: 'Release Funds', role: 'customer' },
   { path: '/payments/refund/:jobId', element: <RefundPayment />, label: 'Refund', role: 'customer' },
   { path: '/escrow/:jobId/status', element: <EscrowStatus />, label: 'Escrow Status', role: 'customer' },
   { path: '/reviews/create', element: <ReviewWorker />, label: 'Review Worker', role: 'customer' },

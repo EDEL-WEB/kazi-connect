@@ -29,7 +29,7 @@ export default function AvailableJobs() {
       {loading && <div style={s.empty}>Loading...</div>}
 
       {!loading && jobs.length === 0 && (
-        <div style={s.empty}>🔍 No available jobs right now. Check back soon!</div>
+        <div style={s.empty}>📭 No job offers yet. You'll be notified when a customer selects you.</div>
       )}
 
       <div style={s.grid}>
@@ -43,6 +43,7 @@ export default function AvailableJobs() {
             <div style={s.meta}>
               <span>📍 {j.location}</span>
               <span>💰 {money(j.budget)}</span>
+              {j.distance_km != null && <span>🚶 {j.distance_km} km away</span>}
               <span>📅 {fmt(j.created_at)}</span>
             </div>
             <button style={s.btn} onClick={() => navigate(`/worker/jobs/${j.id}/accept`)}>

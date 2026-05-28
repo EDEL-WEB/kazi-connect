@@ -13,22 +13,22 @@ export default function CustomerJobs() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    jobsAPI.myJobs()
-      .then(r => setJobs(r.data?.jobs || r.data || []))
-      .catch(() => setError('Failed to load jobs.'))
+    jobsAPI.customerJobs()
+      .then(r => setJobs(r.data || []))
+      .catch(() => setError('Failed to load requests.'))
       .finally(() => setLoading(false));
   }, []);
 
   const filtered = tab === 'all' ? jobs : jobs.filter(j => j.status === tab);
-  const money = (v) => v != null ? `KSh ${Number(v).toLocaleString()}` : '—';
+  const money = (v) => v != null ? `KES ${Number(v).toLocaleString()}` : '—';
   const fmt = (d) => d ? new Date(d).toLocaleDateString('en-KE', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
 
   return (
     <div style={s.page}>
       <div style={s.header}>
         <button style={s.back} onClick={() => navigate('/dashboard')}>← Dashboard</button>
-        <h2 style={s.title}>My Jobs</h2>
-        <button style={s.newBtn} onClick={() => navigate('/jobs/create')}>+ New Job</button>
+        <h2 style={s.title}>My Requests</h2>
+        <button style={s.newBtn} onClick={() => navigate('/jobs/create')}>+ New Request</button>
       </div>
       <div style={s.tabs}>
         {TABS.map(t => (

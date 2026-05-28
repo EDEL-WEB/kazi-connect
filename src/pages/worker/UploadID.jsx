@@ -11,6 +11,7 @@ export default function UploadID() {
   const [backPreview, setBackPreview] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showStatusLink, setShowStatusLink] = useState(false);
 
   const handleFile = (side, file) => {
     if (!file) return;
@@ -25,6 +26,7 @@ export default function UploadID() {
     try {
       setLoading(true);
       setError('');
+      setShowStatusLink(false);
 
       // Upload files via FormData
       const formData = new FormData();
@@ -34,12 +36,18 @@ export default function UploadID() {
 
       const res = await verificationAPI.uploadId(formData);
       if (res.data.flagged) {
-        setError('Your ID has been flagged (duplicate or invalid). Please contact support.');
+        setError('This ID number is already registered. If this is your ID, go to verification status to check your progress.');
+        setShowStatusLink(true);
+        return;
         return;
       }
       navigate('/verification/verify-phone');
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to upload ID.');
+      const msg = err.response?.data?.message || err.response?.data?.error || 'Failed to upload ID.';
+      setError(msg);
+      if (err.response?.status === 400 && msg.toLowerCase().includes('already registered')) {
+        setShowStatusLink(true);
+      }
     } finally {
       setLoading(false);
     }
@@ -53,7 +61,18 @@ export default function UploadID() {
         <h2 style={s.title}>Upload National ID</h2>
         <p style={s.sub}>Upload your national ID photos. Worth <strong>25 points</strong>.</p>
 
-        {error && <div style={s.error}>{error}</div>}
+        {error && (
+          <div style={s.error}>
+            ⚠️ {error}
+            {showStatusLink && (
+              <div style={{ marginTop: '8px' }}>
+                <button style={s.statusLink} onClick={() => navigate('/verification/status')}>
+                  Check verification status →
+                </button>
+              </div>
+            )}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit}>
           <label style={s.label}>National ID Number</label>
@@ -108,4 +127,5 @@ const s = {
   uploadIcon: { fontSize: '2rem' },
   preview: { width: '100%', height: '100%', objectFit: 'cover' },
   btn: { width: '100%', padding: '13px', background: '#148477', color: '#fff', border: 'none', borderRadius: '10px', fontSize: '1rem', fontWeight: 600, cursor: 'pointer', marginTop: '20px', fontFamily: 'Poppins, sans-serif' },
+  statusLink: { background: 'none', border: 'none', color: '#c62828', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem', textDecoration: 'underline', padding: 0 },
 };

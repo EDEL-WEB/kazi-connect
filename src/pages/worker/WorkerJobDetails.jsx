@@ -63,7 +63,10 @@ export default function WorkerJobDetails() {
         </div>
 
         <div style={s.actions}>
-          {job.status === 'accepted' && (
+        {job.status === 'accepted' && job.rate_status !== 'approved' && (
+            <div style={s.waiting}>⏳ Waiting for customer to approve your rate before you can start.</div>
+          )}
+          {job.status === 'accepted' && job.rate_status === 'approved' && (
             <button style={s.btnBlue} onClick={() => updateStatus('in_progress')} disabled={updating}>
               Start Job
             </button>
@@ -97,6 +100,7 @@ const s = {
   row: { display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem' },
   label: { color: '#888', fontWeight: 500 },
   actions: { display: 'flex', flexWrap: 'wrap', gap: '10px' },
+  waiting: { background: '#fff8e1', color: '#f57f17', padding: '12px 14px', borderRadius: '8px', fontSize: '0.9rem', marginBottom: '10px', fontWeight: 500 },
   btnBlue: { padding: '10px 18px', background: '#1976d2', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', fontSize: '0.9rem' },
   btnGreen: { padding: '10px 18px', background: '#2e7d32', color: '#fff', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', fontSize: '0.9rem' },
   btnOutline: { padding: '10px 18px', background: 'none', border: '1.5px solid #148477', color: '#148477', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', fontSize: '0.9rem' },
